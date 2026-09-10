@@ -1,0 +1,397 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="de" class="dark"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Alpha &amp; Megatrend Portfolio Tracker&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Tailwind CSS &amp; Chart.js via CDN --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script src="https://cdn.jsdelivr.net/npm/chart.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>tailwind.config = {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>darkMode: 'class',</p>
+<p class="p1"><span class="Apple-converted-space">      </span>theme: {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>extend: {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>colors: {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>brandDark: '#0f172a',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>brandCard: '#1e293b',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>brandBorder: '#334155'</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body class="bg-brandDark text-slate-100 min-h-screen p-4 md:p-8 font-sans"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="max-w-7xl mx-auto space-y-6"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Header-Bereich --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;header class="flex flex-col md:flex-row justify-between items-start md:items-center bg-brandCard p-6 rounded-xl border border-brandBorder shadow-xl gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h1 class="text-2xl font-bold tracking-tight text-white flex items-center gap-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;span&gt;⚡&lt;/span&gt; Alpha &amp; Megatrend Portfolio</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="text-slate-400 text-sm mt-1"&gt;Konzentrierte Engpass- &amp; Monopol-Allokation | Trading- &amp; Satelliten-Konto&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;!-- Privacy Toggle &amp; Actions --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="flex items-center gap-4 flex-wrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button id="privacyBtn" onclick="togglePrivacyMode()" class="px-4 py-2 rounded-lg text-sm font-medium border border-cyan-500/50 bg-cyan-950/40 text-cyan-300 hover:bg-cyan-900/60 transition flex items-center gap-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;span id="privacyIcon"&gt;👁️&lt;/span&gt; &lt;span id="privacyText"&gt;Public Proof-of-Work Modus (Zahlen verbergen)&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button onclick="resetToDefaults()" class="px-3 py-2 rounded-lg text-xs font-medium border border-slate-600 hover:bg-slate-700 text-slate-300 transition"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>Reset</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- KPI-Dashboard --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="grid grid-cols-1 md:grid-cols-4 gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="bg-brandCard p-5 rounded-xl border border-brandBorder shadow"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="text-xs text-slate-400 uppercase tracking-wider font-semibold"&gt;Gesamtwert&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="kpiTotalValue" class="text-2xl font-bold mt-1 text-white"&gt;$0.00&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="bg-brandCard p-5 rounded-xl border border-brandBorder shadow"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="text-xs text-slate-400 uppercase tracking-wider font-semibold"&gt;Investiertes Kapital&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="kpiCostBasis" class="text-2xl font-bold mt-1 text-slate-300"&gt;$0.00&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="bg-brandCard p-5 rounded-xl border border-brandBorder shadow"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="text-xs text-slate-400 uppercase tracking-wider font-semibold"&gt;Unrealisierter Gewinn / Verlust&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="kpiUnrealized" class="text-2xl font-bold mt-1"&gt;$0.00 (0.00%)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="bg-brandCard p-5 rounded-xl border border-brandBorder shadow"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="text-xs text-slate-400 uppercase tracking-wider font-semibold"&gt;Anzahl Positionen&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="kpiCount" class="text-2xl font-bold mt-1 text-cyan-400"&gt;0&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Charts Sektion --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="grid grid-cols-1 lg:grid-cols-2 gap-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="bg-brandCard p-6 rounded-xl border border-brandBorder shadow"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2 class="text-lg font-semibold mb-4 text-slate-200"&gt;Sektor- &amp; Megatrend-Allokation (%)&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="h-64 flex justify-center items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;canvas id="sectorChart"&gt;&lt;/canvas&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="bg-brandCard p-6 rounded-xl border border-brandBorder shadow"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2 class="text-lg font-semibold mb-4 text-slate-200"&gt;Top-Positionen (%)&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="h-64 flex justify-center items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;canvas id="assetsChart"&gt;&lt;/canvas&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Position hinzufügen Formular --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="bg-brandCard p-5 rounded-xl border border-brandBorder shadow"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;details&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;summary class="cursor-pointer font-semibold text-sm text-cyan-400 hover:text-cyan-300"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>+ Neue Position manuell hinzufügen</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/summary&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;form id="addPositionForm" onsubmit="handleAddPosition(event)" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 mt-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;input type="text" id="newTicker" placeholder="Ticker (z.B. FCX)" required class="bg-slate-900 border border-brandBorder rounded p-2 text-sm text-white focus:outline-none focus:border-cyan-500"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;select id="newCluster" class="bg-slate-900 border border-brandBorder rounded p-2 text-sm text-white focus:outline-none focus:border-cyan-500"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="KI &amp; Compute"&gt;KI &amp; Compute&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="Physische Infrastruktur"&gt;Physische Infrastruktur&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="Life Sciences"&gt;Life Sciences&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="Defence &amp; Geopolitik"&gt;Defence &amp; Geopolitik&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="Frontier Tech &amp; Robotik"&gt;Frontier Tech &amp; Robotik&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="Konsum / Zyklik"&gt;Konsum / Zyklik&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;input type="number" step="any" id="newShares" placeholder="Stückzahl" required class="bg-slate-900 border border-brandBorder rounded p-2 text-sm text-white focus:outline-none focus:border-cyan-500"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;input type="number" step="any" id="newBuyPrice" placeholder="Kaufkurs ($)" required class="bg-slate-900 border border-brandBorder rounded p-2 text-sm text-white focus:outline-none focus:border-cyan-500"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;input type="number" step="any" id="newPrice" placeholder="Akt. Kurs ($)" required class="bg-slate-900 border border-brandBorder rounded p-2 text-sm text-white focus:outline-none focus:border-cyan-500"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button type="submit" class="bg-cyan-600 hover:bg-cyan-500 text-white rounded p-2 text-sm font-semibold transition"&gt;Hinzufügen&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/form&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/details&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Interaktive Positions-Tabelle --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="bg-brandCard rounded-xl border border-brandBorder shadow overflow-hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="p-5 border-b border-brandBorder flex justify-between items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2 class="text-lg font-semibold text-slate-200"&gt;Portfolio-Positionen&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="text-xs text-slate-400"&gt;Direkt in den Feldern editierbar&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="overflow-x-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;table class="w-full text-left text-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;thead class="bg-slate-900/60 text-slate-400 uppercase text-xs"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;th class="p-3"&gt;Ticker&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;th class="p-3"&gt;Cluster&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;th class="p-3"&gt;Stück&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;th class="p-3"&gt;Kaufkurs ($)&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;th class="p-3"&gt;Akt. Kurs ($)&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;th class="p-3"&gt;Marktwert&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;th class="p-3"&gt;Gewicht (%)&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;th class="p-3"&gt;G/V (%)&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;th class="p-3 text-right"&gt;Aktion&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/thead&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;tbody id="portfolioTableBody" class="divide-y divide-brandBorder/60"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Dynamisch via JavaScript befüllt --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/tbody&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/table&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Ursprungsdaten Ihres Depots</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const DEFAULT_PORTFOLIO = [</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ ticker: "META", cluster: "KI &amp; Compute", shares: 3, buyPrice: 583.85, currentPrice: 661.50 },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ ticker: "MSFT", cluster: "KI &amp; Compute", shares: 4, buyPrice: 378.00, currentPrice: 491.90 },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ ticker: "NLR", cluster: "Physische Infrastruktur", shares: 14, buyPrice: 119.72, currentPrice: 122.95 },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ ticker: "GOOGL", cluster: "KI &amp; Compute", shares: 5, buyPrice: 329.41, currentPrice: 330.70 },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ ticker: "SNPS", cluster: "KI &amp; Compute", shares: 4, buyPrice: 385.24, currentPrice: 399.09 },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ ticker: "LMT", cluster: "Defence &amp; Geopolitik", shares: 3, buyPrice: 516.95, currentPrice: 525.80 },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ ticker: "PYPL", cluster: "Konsum / Zyklik", shares: 25, buyPrice: 45.37, currentPrice: 52.26 },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ ticker: "AMZN", cluster: "KI &amp; Compute", shares: 5, buyPrice: 258.91, currentPrice: 252.18 },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ ticker: "C7A0 (CATL)", cluster: "Physische Infrastruktur", shares: 19, buyPrice: 58.13, currentPrice: 61.69 },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ ticker: "TM", cluster: "Konsum / Zyklik", shares: 6, buyPrice: 175.61, currentPrice: 193.93 },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ ticker: "LLY", cluster: "Life Sciences", shares: 1, buyPrice: 1182.56, currentPrice: 1130.00 },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ ticker: "NVDA", cluster: "KI &amp; Compute", shares: 5, buyPrice: 209.72, currentPrice: 223.18 },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ ticker: "VRT", cluster: "Physische Infrastruktur", shares: 4, buyPrice: 270.40, currentPrice: 261.33 },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ ticker: "XYL", cluster: "Physische Infrastruktur", shares: 8, buyPrice: 109.93, currentPrice: 108.00 },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ ticker: "MRNA", cluster: "Life Sciences", shares: 6, buyPrice: 49.23, currentPrice: 137.13 },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ ticker: "NOW", cluster: "KI &amp; Compute", shares: 6, buyPrice: 122.57, currentPrice: 132.00 },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ ticker: "SYM", cluster: "Frontier Tech &amp; Robotik", shares: 15, buyPrice: 42.58, currentPrice: 42.41 },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ ticker: "CRSP", cluster: "Life Sciences", shares: 11, buyPrice: 49.61, currentPrice: 53.66 },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ ticker: "CEG", cluster: "Physische Infrastruktur", shares: 2, buyPrice: 288.10, currentPrice: 294.40 },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ ticker: "QNT", cluster: "Frontier Tech &amp; Robotik", shares: 10, buyPrice: 49.55, currentPrice: 49.05 },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ ticker: "ETSY", cluster: "Konsum / Zyklik", shares: 6, buyPrice: 50.00, currentPrice: 71.19 },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ ticker: "SPCX", cluster: "Defence &amp; Geopolitik", shares: 2, buyPrice: 115.89, currentPrice: 147.37 }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>let portfolio = JSON.parse(localStorage.getItem('alphaPortfolio')) || DEFAULT_PORTFOLIO;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let isPrivacyMode = false;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let sectorChartInstance = null;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let assetsChartInstance = null;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function saveToStorage() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>localStorage.setItem('alphaPortfolio', JSON.stringify(portfolio));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function togglePrivacyMode() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>isPrivacyMode = !isPrivacyMode;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const btnText = document.getElementById('privacyText');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const btnIcon = document.getElementById('privacyIcon');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (isPrivacyMode) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>btnText.innerText = "Privaten Modus beenden (Zahlen anzeigen)";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>btnIcon.innerText = "🔒";</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>btnText.innerText = "Public Proof-of-Work Modus (Zahlen verbergen)";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>btnIcon.innerText = "👁️";</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>render();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function resetToDefaults() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if(confirm("Möchten Sie das Portfolio wirklich auf den Ausgangszustand zurücksetzen?")) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>portfolio = JSON.parse(JSON.stringify(DEFAULT_PORTFOLIO));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>saveToStorage();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>render();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function updateItem(index, key, value) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>portfolio[index][key] = parseFloat(value) || 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>saveToStorage();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>render();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function deleteItem(index) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>portfolio.splice(index, 1);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>saveToStorage();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>render();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function handleAddPosition(e) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>e.preventDefault();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const ticker = document.getElementById('newTicker').value.toUpperCase().trim();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const cluster = document.getElementById('newCluster').value;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const shares = parseFloat(document.getElementById('newShares').value);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const buyPrice = parseFloat(document.getElementById('newBuyPrice').value);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const currentPrice = parseFloat(document.getElementById('newPrice').value);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>portfolio.push({ ticker, cluster, shares, buyPrice, currentPrice });</p>
+<p class="p1"><span class="Apple-converted-space">      </span>saveToStorage();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>e.target.reset();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>render();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function render() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>// 1. Berechnungen</p>
+<p class="p1"><span class="Apple-converted-space">      </span>let totalCost = 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>let totalValue = 0;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>portfolio.forEach(item =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>totalCost += (item.shares * item.buyPrice);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>totalValue += (item.shares * item.currentPrice);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>const totalGain = totalValue - totalCost;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const totalGainPct = totalCost &gt; 0 ? (totalGain / totalCost) * 100 : 0;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// 2. KPIs rendern</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('kpiCount').innerText = portfolio.length;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (isPrivacyMode) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('kpiTotalValue').innerText = "******";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('kpiCostBasis').innerText = "******";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const gainSign = totalGainPct &gt;= 0 ? "+" : "";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('kpiUnrealized').innerText = `${gainSign}${totalGainPct.toFixed(2)}%`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('kpiUnrealized').className = `text-2xl font-bold mt-1 ${totalGainPct &gt;= 0 ? 'text-emerald-400' : 'text-rose-400'}`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('kpiTotalValue').innerText = `$${totalValue.toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('kpiCostBasis').innerText = `$${totalCost.toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const gainSign = totalGain &gt;= 0 ? "+" : "";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('kpiUnrealized').innerText = `${gainSign}$${totalGain.toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2})} (${gainSign}${totalGainPct.toFixed(2)}%)`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('kpiUnrealized').className = `text-2xl font-bold mt-1 ${totalGain &gt;= 0 ? 'text-emerald-400' : 'text-rose-400'}`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// 3. Tabellen-Zeilen erzeugen</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const tbody = document.getElementById('portfolioTableBody');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>tbody.innerHTML = '';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>portfolio.sort((a, b) =&gt; (b.shares * b.currentPrice) - (a.shares * a.currentPrice));</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>portfolio.forEach((item, index) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const itemVal = item.shares * item.currentPrice;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const weight = totalValue &gt; 0 ? (itemVal / totalValue) * 100 : 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const gainPct = item.buyPrice &gt; 0 ? ((item.currentPrice - item.buyPrice) / item.buyPrice) * 100 : 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const gainColor = gainPct &gt;= 0 ? 'text-emerald-400' : 'text-rose-400';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const tr = document.createElement('tr');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tr.className = "hover:bg-slate-800/40 transition";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tr.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;td class="p-3 font-bold text-white"&gt;${item.ticker}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;td class="p-3 text-xs text-slate-400"&gt;${item.cluster}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;td class="p-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;input type="number" step="any" value="${item.shares}" onchange="updateItem(${index}, 'shares', this.value)"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>class="w-20 bg-slate-900 border border-brandBorder rounded px-2 py-1 text-right focus:outline-none focus:border-cyan-500"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;td class="p-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;input type="number" step="any" value="${item.buyPrice}" onchange="updateItem(${index}, 'buyPrice', this.value)"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>class="w-24 bg-slate-900 border border-brandBorder rounded px-2 py-1 text-right focus:outline-none focus:border-cyan-500"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;td class="p-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;input type="number" step="any" value="${item.currentPrice}" onchange="updateItem(${index}, 'currentPrice', this.value)"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>class="w-24 bg-slate-900 border border-brandBorder rounded px-2 py-1 text-right focus:outline-none focus:border-cyan-500"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;td class="p-3 font-semibold ${isPrivacyMode ? 'text-slate-500' : 'text-slate-200'}"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>${isPrivacyMode ? '******' : '$' + itemVal.toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;td class="p-3 font-bold text-cyan-400"&gt;${weight.toFixed(2)}%&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;td class="p-3 font-semibold ${gainColor}"&gt;${gainPct &gt;= 0 ? '+' : ''}${gainPct.toFixed(2)}%&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;td class="p-3 text-right"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button onclick="deleteItem(${index})" class="text-rose-400 hover:text-rose-300 font-bold px-2 py-1"&gt;✕&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tbody.appendChild(tr);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// 4. Charts aktualisieren</p>
+<p class="p1"><span class="Apple-converted-space">      </span>renderCharts(totalValue);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function renderCharts(totalValue) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Cluster Aggregation</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const clusterMap = {};</p>
+<p class="p1"><span class="Apple-converted-space">      </span>portfolio.forEach(item =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const val = item.shares * item.currentPrice;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>clusterMap[item.cluster] = (clusterMap[item.cluster] || 0) + val;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>const clusterLabels = Object.keys(clusterMap);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const clusterData = clusterLabels.map(label =&gt; ((clusterMap[label] / totalValue) * 100).toFixed(2));</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Top Holdings</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const topItems = [...portfolio].slice(0, 7);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const otherValue = portfolio.slice(7).reduce((acc, curr) =&gt; acc + (curr.shares * curr.currentPrice), 0);</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>const assetLabels = topItems.map(i =&gt; i.ticker);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const assetData = topItems.map(i =&gt; ((i.shares * i.currentPrice / totalValue) * 100).toFixed(2));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (otherValue &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>assetLabels.push("Weitere");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>assetData.push(((otherValue / totalValue) * 100).toFixed(2));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>const colors = ['#06b6d4', '#3b82f6', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981', '#64748b', '#475569'];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Sector Chart</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (sectorChartInstance) sectorChartInstance.destroy();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const ctxSector = document.getElementById('sectorChart').getContext('2d');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>sectorChartInstance = new Chart(ctxSector, {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>type: 'doughnut',</p>
+<p class="p1"><span class="Apple-converted-space">        </span>data: {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>labels: clusterLabels,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>datasets: [{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>data: clusterData,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>backgroundColor: colors,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>borderWidth: 0</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}]</p>
+<p class="p1"><span class="Apple-converted-space">        </span>},</p>
+<p class="p1"><span class="Apple-converted-space">        </span>options: {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>responsive: true,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>maintainAspectRatio: false,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>plugins: {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>legend: { position: 'right', labels: { color: '#cbd5e1', font: { size: 11 } } },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>tooltip: {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>callbacks: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>label: (c) =&gt; ` ${c.label}: ${c.raw}%`</p>
+<p class="p1"><span class="Apple-converted-space">              </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Assets Chart</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (assetsChartInstance) assetsChartInstance.destroy();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const ctxAsset = document.getElementById('assetsChart').getContext('2d');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>assetsChartInstance = new Chart(ctxAsset, {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>type: 'doughnut',</p>
+<p class="p1"><span class="Apple-converted-space">        </span>data: {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>labels: assetLabels,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>datasets: [{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>data: assetData,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>backgroundColor: colors,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>borderWidth: 0</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}]</p>
+<p class="p1"><span class="Apple-converted-space">        </span>},</p>
+<p class="p1"><span class="Apple-converted-space">        </span>options: {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>responsive: true,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>maintainAspectRatio: false,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>plugins: {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>legend: { position: 'right', labels: { color: '#cbd5e1', font: { size: 11 } } },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>tooltip: {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>callbacks: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>label: (c) =&gt; ` ${c.label}: ${c.raw}%`</p>
+<p class="p1"><span class="Apple-converted-space">              </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Initiales Rendern beim Laden der Seite</p>
+<p class="p1"><span class="Apple-converted-space">    </span>window.onload = () =&gt; render();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
